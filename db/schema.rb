@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226073057) do
+ActiveRecord::Schema.define(version: 20180226083510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "listing_id"
+    t.integer "renter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_bookings_on_listing_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "address"
+    t.string "bike_type"
+    t.integer "renter_id"
+    t.boolean "active"
+    t.text "instruction"
+    t.integer "hourly_price"
+    t.string "listing_name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.string "photo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_photos_on_listing_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +67,8 @@ ActiveRecord::Schema.define(version: 20180226073057) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "listings"
+  add_foreign_key "bookings", "users", column: "renter_id"
+  add_foreign_key "listings", "users", column: "renter_id"
+  add_foreign_key "photos", "listings"
 end
