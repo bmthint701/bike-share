@@ -1,0 +1,11 @@
+<h1>Create New Listing</h1>
+<%= simple_form_for @listing do |f| %>
+  <%= f.input :listing_name %>
+  <%= f.input :description %>
+  <%= f.input :address %>
+  <%= f.input :bike_type, collection: ["Fixed-Gear", "Motorized", "Variable-Gear"] %>
+  <%= f.input :active, collection: [true, false] %>
+  <%= f.input :instruction %>
+  <%= f.input :hourly_price %>
+  <%= f.submit  %>
+<% end %>
