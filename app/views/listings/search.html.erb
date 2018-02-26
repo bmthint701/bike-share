@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="banner">
+    <h1>Bikejoubu</h1>
+  <div>
+      <%= form_tag(root_path, method: :get) do %>
+      <%= text_field_tag :term, params[:term] %>
+      <%= submit_tag 'Search', name: nil %>
+    <% end %>
+  </div>
+
+<!--   <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('../../images/background.jpg');">
+ -->
+      <h1>Move Faster with Bikejoubu</h1>
+      <p>Tired of walking? Bikejoubu! </p>
+      <a href="" class="btn-yours">Search!</a>
+    </div>
+  </div>
