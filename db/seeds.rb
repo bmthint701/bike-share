@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-puts 'Creating 100 fake restaurants...'
-100.times do
+puts 'Creating 10 fake restaurants...'
+10.times do
 user = User.create([{
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
@@ -16,18 +16,43 @@ user = User.create([{
   email: Faker::Internet.email
   encrypted_password: "123456"
 
+
   }])
 
+puts 'Creating 100 listings...'
+100.times do
+listing = Listing.create([{
 
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
+address: Faker::Address.city
+bike_type: "Fixed-Gear"
+renter_id: rand(1..10)
+hourly_price: Name.name
+
+
+}
+
+  ])
+create_table "listings", force: :cascade do |t|
+    t.string "address"
+    t.string "bike_type"
+    t.integer "renter_id"
+    t.boolean "active"
+    t.text "instruction"
+    t.integer "hourly_price"
+    t.string "listing_name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
+create_table "bookings", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "listing_id"
+    t.integer "renter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_bookings_on_listing_id"
+  end
 
 # require 'faker'
 
