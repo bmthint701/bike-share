@@ -8,5 +8,7 @@
     <p>Instructions: <%= @listing.instruction %></p>
     <p>Bike Description: <%= @listing.description %></p>
 
+    <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
+
   </div>
 </div>
