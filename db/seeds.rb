@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-listing = Listing.create([{
+
+puts 'Creating 100 fake restaurants...'
+100.times do
+user = User.create([{
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   phone: Faker::PhoneNumber.phone_number,
@@ -14,6 +17,8 @@ listing = Listing.create([{
   encrypted_password: "123456"
 
   }])
+
+
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
