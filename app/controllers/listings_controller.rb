@@ -28,9 +28,6 @@ class ListingsController < ApplicationController
     authorize @listings
   end
 
-  def show
-  end
-
   def my_listings
     @user = current_user
     authorize @user.listings
@@ -42,11 +39,8 @@ class ListingsController < ApplicationController
   end
 
   def edit
-<<<<<<< HEAD
     @listing = Listing.find(params[:id])
     authorize @listing
-=======
->>>>>>> c80b1c1756926e7597ceca8ac81f1604ae371020
   end
 
   def update
