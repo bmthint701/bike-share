@@ -1,5 +1,6 @@
 .banner {
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), asset-url('background.jpg');
+  // background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2), url("images/background2.JPG"));
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(image-path("background3.JPG"));
   background-size: cover;
   height: 100vh;
   width: 100%;
