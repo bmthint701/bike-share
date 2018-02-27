@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :destroy]
+  before_action :set_listing, only: [:show, :destroy, :edit, :update]
 
   def new
     @listing = Listing.new
@@ -42,12 +42,14 @@ class ListingsController < ApplicationController
   end
 
   def edit
+<<<<<<< HEAD
     @listing = Listing.find(params[:id])
     authorize @listing
+=======
+>>>>>>> c80b1c1756926e7597ceca8ac81f1604ae371020
   end
 
   def update
-    @listing = Listing.find(params[:id])
     @listing = Listing.update(listing_params)
     authorize @listing
   end
