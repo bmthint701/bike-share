@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= image_tag "noun_78.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -15,9 +15,7 @@
       <% else %>
         <%= link_to "Manage Listings", my_listings_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-      <% end %>
+
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
