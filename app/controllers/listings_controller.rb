@@ -28,9 +28,10 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
-def my_listings
+  def my_listings
+    @user = current_user
+  end
 
-end
   private
 
   def listing_params

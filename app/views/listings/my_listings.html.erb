@@ -1,1 +1,9 @@
-<h1></h1>
+<div class="container">
+  <%= "#{current_user.first_name}'s Listings" %>
+  <ul>
+    <% current_user.listings.each do |listing| %>
+      <%= link_to "#{listing.listing_name} - #{listing.address} - #{listing.hourly_price}", listing_path(listing) %>
+    <% end %>
+  </ul>
+
+</div>
