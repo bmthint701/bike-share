@@ -14,6 +14,7 @@ class ListingsController < ApplicationController
     end
   end
 
+
   def index
     @listings = if params[:term]
       Listing.where('address ILIKE ?', "%#{params[:term]}%").all
@@ -22,6 +23,9 @@ class ListingsController < ApplicationController
     end
   end
 
+def my_listings
+  
+end
   private
 
   def listing_params
