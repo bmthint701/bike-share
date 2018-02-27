@@ -3,6 +3,10 @@
   <ul>
     <% current_user.listings.each do |listing| %>
       <%= link_to "#{listing.listing_name} - #{listing.address} - #{listing.hourly_price}", listing_path(listing) %>
+
+      <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-trash-alt bin"></i>
+      <% end %>
     <% end %>
   </ul>
   <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
