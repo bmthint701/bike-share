@@ -22,6 +22,9 @@ class ListingsController < ApplicationController
     end
   end
 
+def my_listings
+  
+end
   private
 
   def listing_params
