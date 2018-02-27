@@ -16,6 +16,7 @@ class ListingsController < ApplicationController
 
 
   def index
+    # add active/inactive boolean check
     @listings = if params[:term]
       Listing.where('address ILIKE ?', "%#{params[:term]}%").all
     else
@@ -23,8 +24,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def show
+    @listing = Listing.find(params[:id])
+  end
+
 def my_listings
-  
+
 end
   private
 
