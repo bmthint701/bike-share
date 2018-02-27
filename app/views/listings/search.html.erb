@@ -3,7 +3,7 @@
     <div class="row">
       <h1>Bikejoubu</h1>
       <div>
-        <%= form_tag(root_path, method: :get) do %>
+        <%= form_tag(listings_path, method: :get) do %>
         <%= text_field_tag :term, params[:term] %>
         <%= submit_tag 'Search', name: nil %>
         <% end %>

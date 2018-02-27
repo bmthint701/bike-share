@@ -1,13 +1,5 @@
 class ListingsController < ApplicationController
 
-  def search
-    # @listings = if params[:term]
-    #   Listing.where('address ILIKE ?', "%#{params[:term]}%").all
-    # else
-    #   Listing.all
-    # end
-  end
-
   def new
     @listing = Listing.new
   end
@@ -22,9 +14,21 @@ class ListingsController < ApplicationController
     end
   end
 
+
+  def index
+    @listings = if params[:term]
+      Listing.where('address ILIKE ?', "%#{params[:term]}%").all
+    else
+      Listing.all
+    end
+  end
+
+def my_listings
+  
+end
   private
 
   def listing_params
-    params.require(:listing).permit(:address, :bike_type, :renter_id, :active, :instruction, :hourly_price, :listing_name, :description)
+    params.require(:listing).permit(:address, :bike_type, :renter_id, :active, :instruction, :hourly_price, :listing_name, :description, :term)
   end
 end

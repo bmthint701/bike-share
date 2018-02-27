@@ -10,7 +10,11 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Create Listing", new_listing_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% if current_user.listings.empty? %>
+        <%= link_to "Create Listing", new_listing_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% else %>
+        <%= link_to "Manage Listings", my_listings_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% end %>
       <%= link_to destroy_user_session_path, method: :delete do %>
         <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
       <% end %>

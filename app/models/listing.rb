@@ -1,5 +1,4 @@
 class Listing < ApplicationRecord
-  # belongs_to :user
   belongs_to :renter, class_name: 'User'
   has_many :photos
   validates :bike_type, presence: true
