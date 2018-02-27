@@ -16,13 +16,14 @@ class ListingsController < ApplicationController
   end
 
 
-  def index
+  def search
     # add active/inactive boolean check
-    @listings = if params[:term]
-      Listing.where('address ILIKE ?', "%#{params[:term]}%").all
+    if params[:term]
+      @listings = Listing.where('address ILIKE ?', "%#{params[:term]}%").all
     else
-      Listing.all
+      @listings = Listing.all
     end
+    authorize @listings
   end
 
   def show
