@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PhotoTest < ActiveSupport::TestCase
+class ListingPhotoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
