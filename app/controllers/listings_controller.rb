@@ -23,9 +23,9 @@ class ListingsController < ApplicationController
     end
   end
 
-def my_listings
-  
-end
+  def my_listings
+    @user = current_user
+  end
   private
 
   def listing_params
