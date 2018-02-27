@@ -7,7 +7,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px;
 }
 .card h2:hover {
   text-decoration: none;
@@ -21,6 +22,7 @@
   font-size: 30px;
   text-transform: uppercase;
   color: white;
+  text-align: center;
 }
 .card-category:hover {
   text-decoration: none;
@@ -51,14 +53,6 @@
 }
 .card-link:hover {
   opacity: 0.1;
-}
-
-.bin {
-  top: -30px;
-  right: -10px;
-  position: relative;
-  color: black;
-  text-shadow: 0 0 30px white;
 }
 
 
