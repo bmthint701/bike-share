@@ -3,7 +3,9 @@
 
     <h1><%= @listing.listing_name %></h1>
     Address: <%= @listing.address %>
-    <h3><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h3>
+    <%= link_to show_user_path(@listing.renter) do %>
+      <h2><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h2>
+    <% end %>
     <h3><%= @listing.hourly_price %> ￥/hour</h3>
     <p>Instructions: <%= @listing.instruction %></p>
     <p>Bike Description: <%= @listing.description %></p>
