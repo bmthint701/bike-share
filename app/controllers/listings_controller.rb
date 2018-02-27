@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    authorize @listing
   end
 
   def create
@@ -13,6 +14,7 @@ class ListingsController < ApplicationController
     else
       render:new
     end
+    authorize @listing
   end
 
 
@@ -31,6 +33,7 @@ class ListingsController < ApplicationController
 
   def my_listings
     @user = current_user
+    authorize @user.listings
   end
 
   def destroy
@@ -40,17 +43,20 @@ class ListingsController < ApplicationController
 
   def edit
     @listing = Listing.find(params[:id])
+    authorize @listing
   end
 
   def update
     @listing = Listing.find(params[:id])
     @listing = Listing.update(listing_params)
+    authorize @listing
   end
 
   private
 
   def set_listing
     @listing = Listing.find(params[:id])
+    authorize @listing
   end
 
   def listing_params
