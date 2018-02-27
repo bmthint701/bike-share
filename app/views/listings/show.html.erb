@@ -9,13 +9,10 @@
     <p>Bike Description: <%= @listing.description %></p>
 
     <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
-    
+
     <%= link_to listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } do %>
       <i class="fas fa-trash-alt bin"></i>
     <% end %>
-
-    
-
 
   </div>
 </div>
