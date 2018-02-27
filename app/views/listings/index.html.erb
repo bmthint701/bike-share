@@ -1,0 +1,32 @@
+<!-- <div class="container">
+  <div class="row">
+
+    <% @listings.each do |listing|  %>
+    <%= listing.listing_name %>
+    <% end %>
+
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <% @listings.each do |listing|  %>
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to listing_path(listing), class: "no-deco" do %>
+          <div class="card"
+            style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+                   url('#{ cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill }')" if listing.photos.present? %>">
+            <h2 class="card-category"><%= listing.listing_name %></h2>
+          </div>
+        <% end %>
+        <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash-alt bin"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+
+
+  </div>
+</div>
+
