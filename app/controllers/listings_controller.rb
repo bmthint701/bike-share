@@ -21,11 +21,11 @@ class ListingsController < ApplicationController
 
   def search
     # add active/inactive boolean check
-    if params[:term]
+    if params[:term] != ""
       @listings = Listing.near(params[:term], 2)
     else
-      # @listings = Listing.where.not(latitude: nil, longitude: nil)
-      @listings = Listing.all
+      @listings = Listing.where.not(latitude: nil, longitude: nil)
+      # @listings = Listing.all
     end
 
     @markers = @listings.map do |listing|
