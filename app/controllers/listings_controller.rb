@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:search, :show]
   before_action :set_listing, only: [:show, :destroy, :edit, :update]
 
   def new
@@ -26,6 +27,9 @@ class ListingsController < ApplicationController
       @listings = Listing.all
     end
     authorize @listings
+  end
+
+  def show
   end
 
   def my_listings
