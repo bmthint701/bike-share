@@ -21,6 +21,10 @@ class ListingPolicy < ApplicationPolicy
     true
   end
 
+  def review?
+    true
+  end
+    
   def destroy?
     @record.renter_id = @user.id
   end
