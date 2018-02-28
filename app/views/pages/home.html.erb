@@ -1,15 +1,15 @@
 <div class="banner">
   <div class="container">
     <div class="row">
-      <h1>Bikejoubu</h1>
+      <h1>JP BikeShare</h1>
       <div>
-        <%= form_tag(search_path, method: :get) do %>
-        <%= text_field_tag :term, params[:term] %>
-        <%= submit_tag 'Search', name: nil %>
+        <%= form_tag(listings_path, method: :get) do %>
+        <span id ="banner-typed-text"> <%= text_field_tag :term, params[:term], class: "input" %> </span>
+        <%= submit_tag 'Search', name: nil  %>
+
         <% end %>
       </div>
-      <div><h1>Move Faster with Bikejoubu</h1></div>
-      <div><p>Tired of walking? Bikejoubu! </p></div>
+      <div><h2>Move Faster with JP BikeShare</h2></div>
     </div>
   </div>
 </div>
