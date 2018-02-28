@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
-    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+    <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+    <div><%= cl_image_tag @user.photo, height: 300, width: 400, crop: :fill %></div>
     <%= link_to "Edit Profile",  edit_user_registration_path, class: "btn btn-primary" %>
-    <%= button_to "Log out",  destroy_user_session_path, class: "btn btn-primary", method: 'delete' %>
   </div>
 </div>
+
+
