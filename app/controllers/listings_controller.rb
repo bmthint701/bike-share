@@ -60,13 +60,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find(params[:id])
-    authorize @listing
   end
 
   def update
-    @listing = Listing.update(listing_params)
+    @listing.update(listing_params)
     authorize @listing
+    redirect_to listing_path(@listing)
   end
 
   private
