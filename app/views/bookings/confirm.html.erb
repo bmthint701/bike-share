@@ -1,5 +1,7 @@
-<h1>Confirmed!</h1>
-<h2>Woohoo! You are all set for your reservation on <%= @booking.start_date.strftime("%m/%d/%y!") %></h2>
-<h3>Details</h3>
-<%= cl_image_tag(@booking.listing.photo, height:300, width:400, crop: :fill) %>
-<h4><%= @booking.listing.listing_name %></h4>
+<div class="container">
+  <h1>Confirmed!</h1>
+  <h2>Woohoo! You are all set for your reservation on <%= @booking.start_date.strftime("%m/%d/%y!") %></h2>
+  <h3>Details</h3>
+  <%= cl_image_tag(@booking.listing.photo, height:300, width:400, crop: :fill) %>
+  <h4><%= @booking.listing.listing_name %></h4>
+</div>
