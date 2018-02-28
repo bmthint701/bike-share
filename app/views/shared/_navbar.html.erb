@@ -11,9 +11,9 @@
 
       <!-- Links when logged in -->
       <% if current_user.listings.empty? %>
-        <%= link_to "Create Listing", new_listing_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "List a Bike", new_listing_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% else %>
-        <%= link_to "Manage Listings", my_listings_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "Manage your Bikes", my_listings_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
 
 
@@ -23,7 +23,7 @@
           <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to show_user_path(current_user) do %>
+              <%= button_to show_user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
