@@ -22,7 +22,7 @@ class ListingsController < ApplicationController
   def search
     # add active/inactive boolean check
     if params[:term] != ""
-      @listings = Listing.near(params[:term], 2)
+      @listings = Listing.near(params[:term], 10)
     else
       @listings = Listing.where.not(latitude: nil, longitude: nil)
       # @listings = Listing.all
@@ -41,6 +41,12 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @markers =
+      [{
+        lat: @listing.latitude,
+        lng: @listing.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }]
   end
 
   def my_listings
