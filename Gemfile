@@ -10,6 +10,8 @@ gem 'puma'
 gem 'rails', '5.1.5'
 gem 'redis'
 
+gem "geocoder"
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
