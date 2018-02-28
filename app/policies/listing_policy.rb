@@ -20,4 +20,8 @@ class ListingPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def review?
+    true
+  end
 end
