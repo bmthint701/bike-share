@@ -22,11 +22,21 @@ class ListingsController < ApplicationController
   def search
     # add active/inactive boolean check
     if params[:term]
-      @listings = Listing.where('address ILIKE ?', "%#{params[:term]}%").all
+      @listings = Listing.near(params[:term], 2)
     else
-      @listings = Listing.all
+      @listings = Listing.where.not(latitude: nil, longitude: nil)
     end
+
+    @markers = @listings.map do |listing|
+      {
+        lat: listing.latitude,
+        lng: listing.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
+
     authorize @listings
+    # authorize @markers
   end
 
   def show
