@@ -1,25 +1,26 @@
 .banner {
-  // background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2), url("images/background2.JPG"));
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(image-path("background3.JPG"));
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(image-path("background2.JPG"));
   background-size: cover;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 30px;
 }
 .banner h1 {
   color: white;
   font-size: 60px;
-  font-family: 'Helvetica';
+  font-family: 'Raleway';
 }
 .banner h2 {
   color: white;
-  font-family: 'Lobster', cursive;
+  font-family: 'Raleway', cursive;
 }
 .banner p {
   color: white;
   font-family: 'Lobster';
   font-size: 18px;
+}
+.input {
+  width: 400px;
 }
