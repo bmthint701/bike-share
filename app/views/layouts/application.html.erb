@@ -7,7 +7,6 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <!-- <%#= stylesheet_pack_tag 'application', media: 'all' %> Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
@@ -17,5 +16,8 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+    <%= javascript_pack_tag "map" %>
   </body>
 </html>
