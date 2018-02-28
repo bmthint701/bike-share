@@ -24,7 +24,8 @@ class ListingsController < ApplicationController
     if params[:term]
       @listings = Listing.near(params[:term], 2)
     else
-      @listings = Listing.where.not(latitude: nil, longitude: nil)
+      # @listings = Listing.where.not(latitude: nil, longitude: nil)
+      @listings = Listing.all
     end
 
     @markers = @listings.map do |listing|
