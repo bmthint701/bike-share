@@ -1,14 +1,30 @@
 <div class="container">
-  <%= "#{current_user.first_name}'s Listings" %>
-  <ul>
-    <% current_user.listings.each do |listing| %>
-      <%= link_to "#{listing.listing_name} - #{listing.address} - #{listing.hourly_price}", listing_path(listing) %>
+  <div class="row">
 
-      <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-trash-alt bin"></i>
+  <h2><%= "#{current_user.first_name}'s Listings" %></h2>
+
+    <% current_user.listings.each do |listing| %>
+     <div class="col-xs-12 col-sm-4">
+        <%= link_to listing_path(listing), class: "no-deco" do %>
+          <div class="card" style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{ cl_image_path listing.photo, height: 300, width: 400, crop: :fill }')" if listing.photo.present? %>">
+          <h2 class="card-category"><%= listing.listing_name %></h2>
+          <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash-alt bin"></i>
+          <% end %>
+        </div>
       <% end %>
+      </div>
     <% end %>
-  </ul>
   <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
 
+
+
+  </div>
 </div>
+
+
+
+
+
+
+

@@ -4,12 +4,12 @@
       <h1>JP BikeShare</h1>
       <div>
         <%= form_tag(search_path, method: :get) do %>
-        <span id ="banner-typed-text"> <%= text_field_tag :term, params[:term], class: "input" %> </span>
+        <span id ="banner-typed-text"> <%= text_field_tag :term, params[:term], class: "input", label: "Please enter a location", hint: "Please enter a location", placeholder: "e.g. Minato, Kichijoji" %> </span>
         <%= submit_tag 'Search', name: nil  %>
 
         <% end %>
       </div>
-      <div><h2>Move Faster with JP BikeShare</h2></div>
+      <div><h3><i>Move Faster with JP BikeShare</i></h3></div>
     </div>
   </div>
 </div>

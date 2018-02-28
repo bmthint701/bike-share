@@ -1,3 +1,7 @@
+// .container{
+//   height: calc(100vh-70px)
+
+// }
 .banner {
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(image-path("background2.JPG"));
   background-size: cover;
@@ -6,13 +10,15 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: fixed;
+  margin-bottom: 30px
 }
 .banner h1 {
   color: white;
   font-size: 60px;
   font-family: 'Raleway';
 }
-.banner h2 {
+.banner h3 {
   color: white;
   font-family: 'Raleway', cursive;
 }
@@ -24,3 +30,4 @@
 .input {
   width: 400px;
 }
+
