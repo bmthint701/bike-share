@@ -2,30 +2,33 @@
   <div class="container">
     <div class="row">
 
-      <h1><%= @listing.listing_name %></h1>
-      Address: <%= @listing.address %>
-      <%= link_to show_user_path(@listing.renter) do %>
-        <h2><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h2>
-      <% end %>
-      <h3><%= @listing.hourly_price %> ￥/hour</h3>
-      <p>Instructions: <%= @listing.instruction %></p>
-      <p>Bike Description: <%= @listing.description %></p>
+      <div class="show-info">
 
-      <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
+        <h1><%= @listing.listing_name %></h1>
+        <%= cl_image_tag(@listing.photo,
+      width: 400, height: 300, crop: :fill) %>
+        Address: <%= @listing.address %>
+        <%= link_to show_user_path(@listing.renter), class: "name-link" do %>
+          <h2><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h2>
+        <% end %>
+        <h3><%= @listing.hourly_price %> ￥/hour</h3>
+        <p>Instructions: <%= @listing.instruction %></p>
+        <p>Bike Description: <%= @listing.description %></p>
 
-      <%= link_to listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-trash-alt bin"></i>
-      <% end %>
+        <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
 
+        <%= link_to listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash-alt bin"></i>
+        <% end %>
 
-    <%= simple_form_for @booking do |f| %>
-      <%= f.input :start_date, as: :datetime %>
-      <%= f.input :end_date, as: :datetime %>
-      <%= f.hidden_field :listing_id, value: @listing.id %>
-      <%= f.hidden_field :renter_id, value: current_user.id %>
-      <%= f.button :button, type: :submit, class: "btn btn-danger"  %>
-    <% end %>
-
+        <%= simple_form_for @booking do |f| %>
+          <%= f.input :start_date, as: :datetime %>
+          <%= f.input :end_date, as: :datetime %>
+          <%= f.hidden_field :listing_id, value: @listing.id %>
+          <%= f.hidden_field :renter_id, value: current_user.id %>
+          <%= f.button :button, type: :submit, class: "btn btn-danger"  %>
+        <% end %>
+      </div>
     </div>
 
   </div>
