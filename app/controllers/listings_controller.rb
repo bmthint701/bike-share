@@ -41,6 +41,12 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @markers =
+      [{
+        lat: @listing.latitude,
+        lng: @listing.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }]
   end
 
   def my_listings
