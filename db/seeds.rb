@@ -7,17 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-puts 'Creating 10 fake users...'
-10.times do
-  user = User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    phone: Faker::PhoneNumber.phone_number,
-    email: Faker::Internet.email,
-    encrypted_password: "123456",
+user_id = [1, 3, 4]
 
-    )
-end
 puts 'Creating 100 listings...'
 100.times do
 listing = Listing.create(
