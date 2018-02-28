@@ -21,10 +21,11 @@ class ListingsController < ApplicationController
 
   def search
     # add active/inactive boolean check
-    if params[:term]
-      @listings = Listing.near(params[:term], 2)
+    if params[:term] != ""
+      @listings = Listing.near(params[:term], 10)
     else
       @listings = Listing.where.not(latitude: nil, longitude: nil)
+      # @listings = Listing.all
     end
 
     @markers = @listings.map do |listing|
@@ -41,6 +42,12 @@ class ListingsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @markers =
+      [{
+        lat: @listing.latitude,
+        lng: @listing.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }]
   end
 
   def my_listings
@@ -54,13 +61,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find(params[:id])
-    authorize @listing
   end
 
   def update
-    @listing = Listing.update(listing_params)
+    @listing.update(listing_params)
     authorize @listing
+    redirect_to listing_path(@listing)
   end
 
   private
