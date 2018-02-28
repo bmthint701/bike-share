@@ -1,12 +1,14 @@
 <div class="container">
-  <%= "#{current_user.first_name}'s Listings" %>
+  <h2><%= "#{current_user.first_name}'s Listings" %></h2>
   <ul>
     <% current_user.listings.each do |listing| %>
-      <%= link_to "#{listing.listing_name} - #{listing.address} - #{listing.hourly_price}", listing_path(listing) %>
-
+      <li>
+      <h5><%= link_to "#{listing.listing_name} - #{listing.address} - #{listing.hourly_price}", listing_path(listing) %></h5>
       <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+
         <i class="fas fa-trash-alt bin"></i>
       <% end %>
+      </li>
     <% end %>
   </ul>
   <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
