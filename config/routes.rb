@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'users/view/:id', to: 'pages#show', as: 'show_user'
   get "search", to: "listings#search"
   get 'my_listings', to: 'listings#my_listings'
-  resources :listings do
-    get "book/review", to: 'bookings#review'
-  end
+  resources :listings
+  get "book/review", to: 'bookings#review'
+  post "book/create", to: 'bookings#create', as: 'bookings'
+  get "book/confirm/:id", to: 'bookings#confirm', as: 'booking_confirm'
 end

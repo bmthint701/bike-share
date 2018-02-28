@@ -4,5 +4,8 @@
 <p>Pick Up:</p>
 <p>Drop Off:</p>
 <p>payment info</p>
-<%= link_to "Confirm Booking"  %>
+
+<%= simple_form_for @booking do |f| %>
+  <%= f.input %>
+<% end %>
 </div>

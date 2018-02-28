@@ -8,4 +8,12 @@ class BookingPolicy < ApplicationPolicy
   def review?
     true
   end
+
+  def create?
+    true
+  end
+
+  def confirm?
+    true
+  end
 end

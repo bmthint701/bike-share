@@ -16,6 +16,12 @@
       <i class="fas fa-trash-alt bin"></i>
     <% end %>
 
-    <%= link_to "Book Now!", listing_book_review_path(@listing), class: "btn btn-danger" %>
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :start_date, as: :datetime %>
+      <%= f.input :end_date, as: :datetime %>
+      <%= f.hidden_field :listing_id, value: @listing.id %>
+      <%= f.hidden_field :renter_id, value: current_user.id %>
+      <%= f.button :button, type: :submit, class: "btn btn-danger"  %>
+    <% end %>
   </div>
 </div>
