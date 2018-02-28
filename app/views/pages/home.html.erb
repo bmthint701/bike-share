@@ -2,14 +2,16 @@
   <div class="container">
     <div class="row">
       <h1>JP BikeShare</h1>
+
       <div>
         <%= form_tag(listings_path, method: :get) do %>
-        <span id ="banner-typed-text"> <%= text_field_tag :term, params[:term], class: "input" %> </span>
+        <span id ="banner-typed-text"></span>
+        <%= text_field_tag :term, params[:term], class: "input" %>
         <%= submit_tag 'Search', name: nil  %>
 
         <% end %>
       </div>
-      <div><h2>Move Faster with JP BikeShare</h2></div>
+      <div><h3><i>Move Faster with JP BikeShare</i></h3></div>
     </div>
   </div>
 </div>

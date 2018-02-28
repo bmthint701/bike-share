@@ -3,10 +3,13 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
+    "animate-typing-text": "0.0.2",
     "bootstrap": "3",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "typed.js": "^2.0.6"
   },
   "devDependencies": {
+    "webpack-cli": "^2.0.9",
     "webpack-dev-server": "^3.1.0"
   }
 }
