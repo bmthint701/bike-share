@@ -5,7 +5,8 @@
     "@rails/webpacker": "^3.2.2",
     "bootstrap": "3",
     "gmaps": "^0.4.24",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "typed.js": "^2.0.6"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.1.0"
