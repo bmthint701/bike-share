@@ -24,8 +24,12 @@ class ListingPolicy < ApplicationPolicy
   def review?
     true
   end
-    
+
   def destroy?
+    @record.renter_id = @user.id
+  end
+
+  def schedule?
     @record.renter_id = @user.id
   end
 end

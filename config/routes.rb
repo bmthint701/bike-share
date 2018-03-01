@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "book/review", to: 'bookings#review'
   post "book/create", to: 'bookings#create', as: 'bookings'
   get "book/confirm/:id", to: 'bookings#confirm', as: 'booking_confirm'
-  get "schedule/:id", to: "listings#schedule"
+  get "schedule/:id", to: "listings#schedule", as: 'listing_schedule'
 end

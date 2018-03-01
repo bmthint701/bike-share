@@ -49,14 +49,6 @@ ActiveRecord::Schema.define(version: 20180228065420) do
     t.float "longitude"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.bigint "listing_id"
-    t.string "photo_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["listing_id"], name: "index_photos_on_listing_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,5 +75,4 @@ ActiveRecord::Schema.define(version: 20180228065420) do
   add_foreign_key "bookings", "users", column: "renter_id"
   add_foreign_key "listing_photos", "listings"
   add_foreign_key "listings", "users", column: "renter_id"
-  add_foreign_key "photos", "listings"
 end
