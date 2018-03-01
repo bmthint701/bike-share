@@ -14,15 +14,16 @@
         <h3><%= @listing.hourly_price %> ￥/hour</h3>
         <p>Instructions: <%= @listing.instruction %></p>
         <p>Bike Description: <%= @listing.description %></p>
+        <% if @listing.renter == current_user %>
+          <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
 
-        <%= link_to "Edit Listing", edit_listing_path(@listing), class: "btn btn-default" %>
-
-        <%= link_to listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } do %>
-          <i class="fas fa-trash-alt bin"></i>
+          <%= link_to listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash-alt bin"></i>
+          <% end %>
         <% end %>
 
         <% user_id = "" %>
-        <% user_id = current_user.id unless current_user.id.nil? %>
+        <% user_id = current_user.id unless current_user.nil? %>
 
         <%= simple_form_for @booking do |f| %>
           <%= f.input :start_date, as: :datetime, discard_minute: true, discard_year: true, ampm: true, default: (Time.use_zone('Asia/Tokyo') { Time.zone.now }) %>
