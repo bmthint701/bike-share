@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
     <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
-    <div><%= cl_image_tag @user.photo, height: 300, width: 400, crop: :fill %></div>
+    <div><%= cl_image_tag current_user.photo.present? ? @user.photo : "user1",  height: 300, width: 400, crop: :fill %></div>
     <%= link_to "Edit Profile",  edit_user_registration_path, class: "btn btn-primary" %>
+
   </div>
 </div>
 
