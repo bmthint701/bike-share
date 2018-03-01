@@ -50,7 +50,7 @@ class ListingsController < ApplicationController
 
       }
     end
-
+    @listings = Listing.all if @listings.empty?
     authorize @listings if !@listings.blank?
   end
 
