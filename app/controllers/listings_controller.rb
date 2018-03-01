@@ -47,6 +47,7 @@ class ListingsController < ApplicationController
         lat: listing.latitude,
         lng: listing.longitude,
         infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: listing, distance: @hash_of_distances[listing.id] }) }
+
       }
     end
 

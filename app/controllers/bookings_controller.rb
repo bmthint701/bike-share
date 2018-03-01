@@ -6,11 +6,20 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.save
-      redirect_to booking_confirm_path(@booking)
+    if @booking.listing.renter_id == @booking.renter_id
+      if @booking.save
+        redirect_to my_listings_path
+      else
+        @listing = Listing.find(@booking.listing_id)
+        redirect_to schedule_path(@booking.listing)
+      end
     else
-    @listing = Listing.find(@booking.listing_id)
-    redirect_to listing_path(@listing)
+      if @booking.save
+        redirect_to booking_confirm_path(@booking)
+      else
+      @listing = Listing.find(@booking.listing_id)
+      redirect_to listing_path(@listing)
+      end
     end
     authorize @booking
   end

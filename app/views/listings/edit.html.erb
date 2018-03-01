@@ -4,11 +4,11 @@
       <!-- This div is centered and takes 4 columns -->
       <h1>Edit Listing</h1>
       <%= simple_form_for @listing do |f| %>
-        <%= f.input :listing_name, hint: "Title of your posting", placeholder: "e.g. Minato, Kichijoji"%>
+        <%= f.input :listing_name%>
         <%= f.input :description %>
         <%= f.input :address %>
         <%= f.input :bike_type, collection: ["Fixed-Gear", "Motorized", "Variable-Gear"] %>
-        <%= f.input :active, collection: [true, false] %>
+        <%= f.input :active, as: :boolean %>
         <%= f.input :instruction %>
         <%= f.input :hourly_price %>
         <%= f.submit class: "btn btn-success" %>
