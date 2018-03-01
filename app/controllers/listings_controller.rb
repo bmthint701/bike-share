@@ -23,19 +23,19 @@ class ListingsController < ApplicationController
     # add active/inactive boolean check
     if params[:term].present?
       @listings = Listing.near(params[:term], 10)
-      @location = params[:term]
+      @search_location = params[:term]
     else
       # @listings = Listing.where.not(latitude: nil, longitude: nil)
       # @listings = Listing.all
-      @location = request.remote_ip
-      @listings = Listing.near(Geocoder.coordinates(@location), 10)
+      @search_location = request.remote_ip
+      @listings = Listing.near(Geocoder.coordinates(@search_location), 10)
       # @location = '122.130.160.183'
     end
 
     @hash_of_distances = {}
     @listings.each do |listing|
-      current_coordinates = Geocoder.coordinates(@location)
-      distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(listing.address))
+      coordinates = Geocoder.coordinates(@search_location)
+      distance = Geocoder::Calculations.distance_between(coordinates, Geocoder.coordinates(listing.address))
       @hash_of_distances[listing.id] = distance.round(2)
     end
 
@@ -51,15 +51,15 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @hash_of_distances = {}
-    current_coordinates = Geocoder.coordinates(request.remote_ip)
-    @distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(@listing.address)).round(2)
+    # @hash_of_distances = {}
+    # current_coordinates = Geocoder.coordinates(request.remote_ip)
+    # @distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(@listing.address)).round(2)
     @booking = Booking.new
     @markers =
       [{
         lat: @listing.latitude,
         lng: @listing.longitude,
-        infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: @listing, distance: @distance }) }
+        infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: @listing }) }
       }]
   end
 

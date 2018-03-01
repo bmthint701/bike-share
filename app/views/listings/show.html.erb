@@ -8,7 +8,6 @@
         <%= cl_image_tag(@listing.photo,
       width: 400, height: 300, crop: :fill) %>
         Address: <%= @listing.address %>
-        Distance: <%= @distance %> km
         <%= link_to show_user_path(@listing.renter), class: "name-link" do %>
           <h2><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h2>
         <% end %>
