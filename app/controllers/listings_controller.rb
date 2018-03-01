@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:search, :show]
+  skip_after_action :verify_authorized, only: [:search]
   before_action :set_listing, only: [:show, :destroy, :edit, :update, :schedule]
 
   def new
@@ -56,7 +57,7 @@ class ListingsController < ApplicationController
       @listings = Listing.all
       @header = "All Listings"
     end
-    authorize @listings if !@listings.blank?
+    # authorize @listings
   end
 
   def show

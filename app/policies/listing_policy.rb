@@ -5,9 +5,9 @@ class ListingPolicy < ApplicationPolicy
     end
   end
 
-  def search?
-     true
-  end
+  # def search?
+  #
+  # end
 
   def my_listings?
     true
