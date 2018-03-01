@@ -49,7 +49,7 @@ class ListingsController < ApplicationController
         infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: listing, distance: @hash_of_distances[listing.id] }) }
       }
     end
-
+    @listings = Listing.all if @listings.empty?
     authorize @listings if !@listings.blank?
   end
 
