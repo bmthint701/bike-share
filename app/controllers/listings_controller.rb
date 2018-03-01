@@ -21,32 +21,49 @@ class ListingsController < ApplicationController
 
   def search
     # add active/inactive boolean check
-    if params[:term] != ""
-      @listings = Listing.near(params[:term], 10)
+    if params[:term].present?
+      @pre_listings = Listing.near(params[:term], 10)
+      @listings = @pre_listings.select { |listing| listing.active }
+      @search_location = params[:term]
     else
-      @listings = Listing.where.not(latitude: nil, longitude: nil)
+      # @listings = Listing.where.not(latitude: nil, longitude: nil)
       # @listings = Listing.all
+      @search_location = request.remote_ip
+      @pre_listings = Listing.near(Geocoder.coordinates(@search_location), 10)
+      @listings = @pre_listings.select { |listing| listing.active }
+      # @location = '122.130.160.183'
+      # request.remote_ip
+    end
+
+    @hash_of_distances = {}
+    @listings.each do |listing|
+      coordinates = Geocoder.coordinates(@search_location)
+      distance = Geocoder::Calculations.distance_between(coordinates, Geocoder.coordinates(listing.address))
+      @hash_of_distances[listing.id] = distance.round(2)
     end
 
     @markers = @listings.map do |listing|
       {
         lat: listing.latitude,
-        lng: listing.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: listing.longitude,
+        infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: listing, distance: @hash_of_distances[listing.id] }) }
+
       }
     end
 
-    authorize @listings
-    # authorize @markers
+    authorize @listings if !@listings.blank?
   end
 
   def show
+    # @hash_of_distances = {}
+    # current_coordinates = Geocoder.coordinates(request.remote_ip)
+    # @distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(@listing.address)).round(2)
     @booking = Booking.new
     @markers =
       [{
         lat: @listing.latitude,
-        lng: @listing.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: @listing.longitude,
+        infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: @listing }) }
       }]
   end
 

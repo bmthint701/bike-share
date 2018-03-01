@@ -8,5 +8,6 @@ class Listing < ApplicationRecord
   validates :listing_name, presence: true
   validates :description, presence: true
   validates :address, presence: true
+  validates :photo, presence: true
   mount_uploader :photo, PhotoUploader
 end

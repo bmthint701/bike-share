@@ -1,13 +1,16 @@
 <div class="content">
   <div class="container">
     <div class="row">
+      <h2 class="text-center">Showing results for <%= params[:term].present? ? params[:term] : "Current Location" %></h2>
       <% @listings.each do |listing|  %>
         <div class="col-xs-12 col-sm-4">
           <%= link_to listing_path(listing), class: "no-deco" do %>
             <div class="card"
               style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
                      url('#{ cl_image_path listing.photo, height: 300, width: 400, crop: :fill }')" if listing.photo.present? %>">
-              <h2 class="card-category"><%= listing.listing_name %></h2>
+              <div class="card-name"><h2 class="card-category"><%= listing.listing_name %></h2></div>
+              <div class="card-price"><h5><%= listing.hourly_price %> ￥/hour</h5></div>
+              <div class="card-distance"><h5><%= @hash_of_distances[listing.id] %> km away</h5></div>
             </div>
           <% end %>
         </div>
