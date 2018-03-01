@@ -1,0 +1,6 @@
+<div class="container">
+<h1> Change availability for <%= @listing.listing_name %> </h1>
+<%= simple_form_for @listing do |f| %>
+<%= f.input :active, collection: [true, false] %>
+<% end %>
+</div>
