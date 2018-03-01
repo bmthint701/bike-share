@@ -29,4 +29,8 @@ class ListingPolicy < ApplicationPolicy
     @record.renter_id = @user.id
   end
 
+  def schedule?
+    @record.renter_id = @user.id
+  end
+
 end

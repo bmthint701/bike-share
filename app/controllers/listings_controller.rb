@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:search, :show]
-  before_action :set_listing, only: [:show, :destroy, :edit, :update]
+  before_action :set_listing, only: [:show, :destroy, :edit, :update, :schedule]
 
   def new
     @listing = Listing.new
@@ -71,6 +71,7 @@ class ListingsController < ApplicationController
 
   def schedule
     @booking = Booking.new
+    authorize @listing
   end
 
   private
