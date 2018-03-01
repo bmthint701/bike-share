@@ -4,9 +4,10 @@
   background-size: cover !important;
   background-position: center;
   color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-around;
+  // align-items: center;
+  text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 20px;
 }
@@ -41,15 +42,19 @@
   opacity: 0.7;
   font-weight: lighter;
 }
-.card-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  z-index: 2;
-  background: black;
-  opacity: 0;
+.card-name {
+  position: relative;
+  top: 40px;
+}
+.card-distance {
+  position: relative;
+  top: 70px;
+  // right: 40px;
+}
+.card-price {
+  position: relative;
+  top: 70px;
+  // right: 40px;
 }
 .card-link:hover {
   opacity: 0.1;
