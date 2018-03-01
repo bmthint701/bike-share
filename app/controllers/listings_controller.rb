@@ -69,6 +69,10 @@ class ListingsController < ApplicationController
     redirect_to listing_path(@listing)
   end
 
+  def schedule
+    @booking = Booking.new
+  end
+
   private
 
   def set_listing
