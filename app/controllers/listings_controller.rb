@@ -31,7 +31,7 @@ class ListingsController < ApplicationController
     @markers = @listings.map do |listing|
       {
         lat: listing.latitude,
-        lng: listing.longitude#,
+        lng: listing.longitude
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
     end
@@ -45,7 +45,7 @@ class ListingsController < ApplicationController
     @markers =
       [{
         lat: @listing.latitude,
-        lng: @listing.longitude#,
+        lng: @listing.longitude
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }]
   end
