@@ -81,4 +81,9 @@
 .click-down {
   text-align: center;
   outline: 0;
+  border: 0;
+  opacity: 0.6;
+}
+.click-down:hover {
+  opacity: 1;
 }
