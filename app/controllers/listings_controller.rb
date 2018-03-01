@@ -25,6 +25,7 @@ class ListingsController < ApplicationController
       @pre_listings = Listing.near(params[:term], 10)
       @listings = @pre_listings.select { |listing| listing.active }
       @search_location = params[:term]
+      @header = params[:term]
     else
       # @listings = Listing.where.not(latitude: nil, longitude: nil)
       # @listings = Listing.all
@@ -33,6 +34,7 @@ class ListingsController < ApplicationController
       @listings = @pre_listings.select { |listing| listing.active }
       # @location = '122.130.160.183'
       # request.remote_ip
+      @header = "Current Location"
     end
 
     @hash_of_distances = {}
@@ -50,7 +52,10 @@ class ListingsController < ApplicationController
 
       }
     end
-    @listings = Listing.all if @listings.empty?
+    if @listings.empty?
+      @listings = Listing.all
+      @header = "All Listings"
+    end
     authorize @listings if !@listings.blank?
   end
 
