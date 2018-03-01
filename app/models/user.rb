@@ -10,4 +10,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :phone, presence: true
   mount_uploader :photo, PhotoUploader
+
+  # geocoded_by :ip_address,
+  # :latitude => :lat, :longitude => :lon
+  # after_validation :geocode
 end

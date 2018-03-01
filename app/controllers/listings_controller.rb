@@ -28,16 +28,22 @@ class ListingsController < ApplicationController
       # @listings = Listing.all
     end
 
+    hash_of_distances = {}
+    @listings.each do |listing|
+      current_coordinates = Geocoder.coordinates(request.remote_ip)
+      distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(listing.address))
+      hash_of_distances[listing.id] = distance.round(2)
+    end
+
     @markers = @listings.map do |listing|
       {
         lat: listing.latitude,
-        lng: listing.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: listing.longitude,
+        infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: listing, distance: hash_of_distances[listing.id] }) }
       }
     end
 
     authorize @listings
-    # authorize @markers
   end
 
   def show
