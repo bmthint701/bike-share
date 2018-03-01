@@ -4,4 +4,5 @@
   <h3>Details</h3>
   <%= cl_image_tag(@booking.listing.photo, height:300, width:400, crop: :fill) %>
   <h4><%= @booking.listing.listing_name %></h4>
+  <p><%= "#{@booking.start_date.strftime("%m/%d/%y @ %l%p")} to #{@booking.end_date.strftime("%m/%d/%y @ %l%p")}" %></p>
 </div>
