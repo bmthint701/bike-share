@@ -21,16 +21,20 @@ class ListingsController < ApplicationController
 
   def search
     # add active/inactive boolean check
-    if params[:term] != ""
+    if params[:term].present?
       @listings = Listing.near(params[:term], 10)
+      @location = params[:term]
     else
-      @listings = Listing.where.not(latitude: nil, longitude: nil)
+      # @listings = Listing.where.not(latitude: nil, longitude: nil)
       # @listings = Listing.all
+      @location = request.remote_ip
+      @listings = Listing.near(Geocoder.coordinates(@location), 10)
+      # @location = '122.130.160.183'
     end
 
     @hash_of_distances = {}
     @listings.each do |listing|
-      current_coordinates = Geocoder.coordinates(request.remote_ip)
+      current_coordinates = Geocoder.coordinates(@location)
       distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(listing.address))
       @hash_of_distances[listing.id] = distance.round(2)
     end
