@@ -13,15 +13,9 @@
           <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
             <i class="fas fa-trash-alt listings-card-bin"></i>
           <% end %>
+          <%= link_to "Change Availability", schedule_path(listing), class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
   <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
 </div>
-
-
-
-
-
-
-

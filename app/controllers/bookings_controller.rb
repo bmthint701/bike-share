@@ -9,7 +9,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_confirm_path(@booking)
     else
-      render 'listings/show.html'
+    @listing = Listing.find(@booking.listing_id)
+    redirect_to listing_path(@listing)
     end
     authorize @booking
   end

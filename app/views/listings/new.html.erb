@@ -11,7 +11,7 @@
           <%= f.input :address %>
           <%= f.input :bike_type, collection: ["Fixed-Gear", "Motorized", "Variable-Gear"] %>
           <%= f.input :active, collection: [true, false] %>
-          <%= f.input :instruction %>
+          <%= f.input :instruction, label: "Pick up instructions" %>
           <%= f.input :hourly_price %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
