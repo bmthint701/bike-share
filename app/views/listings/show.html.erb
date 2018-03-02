@@ -20,7 +20,7 @@
         <%= link_to show_user_path(@listing.renter), class: "name-link" do %>
           <h2><%= @listing.renter.first_name %> <%= @listing.renter.last_name %></h2>
         <% end %>
-        <h3 id="user_price"><%= @listing.hourly_price %> ￥/hour</h3>
+        <h3><%= @listing.hourly_price %> ￥/hour</h3>
         <p>Instructions: <%= @listing.instruction %></p>
         <p>Bike Description: <%= @listing.description %></p>
         <% if @listing.renter != current_user %>
@@ -34,6 +34,9 @@
             <%= f.hidden_field :renter_id, value: user_id %>
             <%= f.button :button, type: :submit, class: "btn btn-danger"  %>
           <% end %>
+          <div class="price-container">
+            Total cost: $<span id="price">0.00</span>
+          </div>
           <h2> Reviews and Ratings</h2>
         <h3> Average Rating: <%= @avg_rating.round(1) %></h3>
           <h2>
@@ -44,26 +47,8 @@
               Be the first to leave a review for <%= @listing.listing_name %>
             <% else %>
 
-
-        <%= simple_form_for @booking do |f| %>
-          <%= f.input :start_date, as: :datetime, discard_minute: true, discard_year: true, ampm: true, default: (Time.use_zone('Asia/Tokyo') { Time.zone.now }) %>
-          <%= f.input :end_date, as: :datetime, discard_minute: true, discard_year: true, ampm: true, default:  (Time.use_zone('Asia/Tokyo') { Time.zone.now } + 1.hour ) %>
-          <%= f.hidden_field :listing_id, value: @listing.id %>
-          <%= f.hidden_field :renter_id, value: user_id %>
-          <%= f.button :button, type: :submit, class: "btn btn-danger"  %>
-        <% end %>
-        <div class="price-container">
-          Total cost: $<span id="price">0.00</span>
-        </div>
-        <h2>
-          <%= pluralize @listing.reviews.size, "review" %>
-        </h2>
-        <div id="reviews">
-          <% if @listing.reviews.blank? %>
-            Be the first to leave a review for <%= @listing.listing_name %>
-          <% else %>
-            <% @listing.reviews.each do |review| %>
-              <%= render 'reviews/show', review: review %>
+              <% @listing.reviews.each do |review| %>
+                <%= render 'reviews/show', review: review %>
               <% end %>
             <% end %>
           </div>
@@ -85,5 +70,7 @@
   ></div>
 
   <script type="text/javascript">
+    const month = document.getElementById("booking_start_date_1i")
+    const day = document.getElementById("booking_start_date_2i")
   </script>
 </div>
