@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get "book/confirm/:id", to: 'bookings#confirm', as: 'booking_confirm'
   get "book/show", to: "bookings#show", as: 'my_bookings'
   get "schedule/:id", to: 'listings#schedule', as: 'schedule'
+  get "my_requests", to: 'bookings#requests', as 'bookings_requests'
 end
