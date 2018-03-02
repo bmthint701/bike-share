@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-4">
+      <h1>Edit Listing for <%= @listing.listing_name %></h1>
       <!-- This div is centered and takes 4 columns -->
-      <h1>Edit Listing</h1>
       <%= simple_form_for @listing do |f| %>
         <%= f.input :listing_name%>
         <%= f.input :description %>
@@ -13,7 +13,30 @@
         <%= f.input :hourly_price %>
         <%= f.submit class: "btn btn-success" %>
       <% end %>
-
+    </div>
+    <div class="col-sm-4">
+      <h2>Add unavailability</h2>
+      <!-- This div is centered and takes 4 columns -->
+      <%= simple_form_for @booking do |f| %>
+      <%= f.input :start_date, as: :datetime, discard_minute: true, discard_year: true, ampm: true, default: (Time.use_zone('Asia/Tokyo') { Time.zone.now }) %>
+      <%= f.input :end_date, as: :datetime, discard_minute: true, discard_year: true, ampm: true, default:  (Time.use_zone('Asia/Tokyo') { Time.zone.now } + 1.hour ) %>
+      <%= f.hidden_field :listing_id, value: @listing.id %>
+      <%= f.hidden_field :renter_id, value: current_user.id %>
+      <%= f.button :button, "Add Unavailable Times", class: "btn btn-danger"  %>
+      <% end %>
+    </div>
+    <div class="col-sm-4">
+    <h2>Current unavailable times</h1>
+      <ul>
+        <% @unavailable_times.each do |booking| %>
+          <% if booking.end_date > Time.now %>
+            <li><%= "#{booking.start_date.strftime("%m/%d/%y  %l%p")} - #{booking.end_date.strftime("%m/%d/%y  %l%p")}" %>
+              <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %></li>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
