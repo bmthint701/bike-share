@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-      <h2>My Rentals</h2>
+    <h2>My Bookings</h2>
       <ul>
       <% @my_rentals.each do |booking| %>
 
@@ -17,7 +17,7 @@
     </div>
     <div class="col-sm-offset-4 col-sm-4">
 
-      <h2>My Listing Bookings</h2>
+      <h2>My Bike's Bookings</h2>
       <ul>
       <% @my_listings.each do |booking| %>
         <li><%= "#{booking.listing.listing_name} - #{booking.listing.renter_id}" %></li>
