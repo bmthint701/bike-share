@@ -1,6 +1,6 @@
 <%= simple_form_for([ listing, review ]) do |form| %>
   <%= form.label "Create Review" %>
-  <%= form.input :rating, collection: [1,2,3,4,5], as: :radio_buttons, item_wrapper_class: 'radio-inline', label: false %>
+  <%= form.input :rating, collection: [1,2,3,4,5], as: :radio_buttons, item_wrapper_class: 'radio-inline radio-styling', label: false %>
   <%= form.input :content, as: :text, label: false %>
   <%= form.button :submit %>
 <% end %>
