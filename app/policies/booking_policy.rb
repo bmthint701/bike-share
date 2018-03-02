@@ -24,4 +24,8 @@ class BookingPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def requests?
+    true
+  end
 end
