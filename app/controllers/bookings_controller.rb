@@ -35,11 +35,17 @@ class BookingsController < ApplicationController
   end
 
   def index
-    bookings = Booking.where(renter_id: current_user.id)
-    @my_rentals = bookings.select{ |booking| booking.renter_id != booking.listing.renter_id}
+    my_bookings = Booking.where(renter_id: current_user.id)
+    @my_rentals = my_bookings.select{ |booking| (booking.renter_id != booking.listing.renter_id) && (booking.accepted)}
     listings = Listing.where(renter: current_user)
     @my_listings = []
-
+    listings.each do |listing|
+      listing.bookings.each do |booking|
+        if (booking.renter_id != booking.listing.renter_id) && (booking.accepted)
+          @my_listings << booking
+        end
+      end
+    end
 
   end
 
