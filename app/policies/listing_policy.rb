@@ -14,7 +14,7 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def update?
-    @record.renter_id = @user.id
+    @record.renter_id == @user.id
   end
 
   def create?
@@ -26,11 +26,11 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.renter_id = @user.id
+    @record.renter_id == @user.id
   end
 
   def schedule?
-    @record.renter_id = @user.id
+    @record.renter_id == @user.id
   end
 
 end

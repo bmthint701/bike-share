@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
+  skip_after_action :verify_authorized, only: [:show]
   def review
     @listing = Listing.find(params[:listing_id])
     authorize @listing
@@ -27,6 +29,13 @@ class BookingsController < ApplicationController
   def confirm
     @booking = Booking.find(params[:id])
     authorize @booking
+  end
+
+  def show
+    bookings = Booking.where(renter_id: current_user.id)
+    @my_rentals = bookings.select{ |booking| booking.renter_id != booking.listing.id}
+    listings = Booking.where(listing: current_user)
+    @my_listings = listings.select{ |listing| listing.renter_id != listing.listing_id}
   end
 
   private

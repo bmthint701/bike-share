@@ -1,0 +1,13 @@
+<h2>My Rentals</h2>
+<ul>
+<% @my_rentals.each do |booking| %>
+  <li><%= "#{booking.renter_id} - #{booking.listing.renter_id}" %></li>
+<% end %>
+</ul>
+
+<h2>My Listing Bookings</h2>
+<ul>
+<% @my_listings.each do |booking| %>
+  <li><%= "#{booking.renter_id} - #{booking.listing.renter_id}" %></li>
+<% end %>
+</ul>
