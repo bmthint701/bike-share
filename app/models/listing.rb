@@ -2,6 +2,8 @@ class Listing < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
+  has_many :reviews, dependent: :destroy
+
   belongs_to :renter, class_name: 'User'
   validates :bike_type, presence: true
   validates :hourly_price, presence: true, numericality: { greater_than: 0 }
