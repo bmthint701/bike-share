@@ -36,9 +36,10 @@ class BookingsController < ApplicationController
 
   def index
     bookings = Booking.where(renter_id: current_user.id)
-    @my_rentals = bookings.select{ |booking| booking.renter_id != booking.listing.id}
-    listings = Booking.where(listing: current_user)
-    @my_listings = listings.select{ |listing| listing.renter_id != listing.listing_id}
+    @my_rentals = bookings.select{ |booking| booking.renter_id != booking.listing.renter_id}
+    listings = Listing.where(renter: current_user)
+    @my_listings = []
+
 
   end
 
