@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
     @requests = []
     @bookings.each do |booking|
       if ((booking.listing.renter == current_user) && (booking.accepted.nil?))
-        if booking.listing.renter != booking.renter
+        if (booking.listing.renter != booking.renter) && (booking.start_date >= DateTime.now)
           @requests << booking
         end
       end
@@ -69,7 +69,8 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.accepted = true
     @booking.save
-    redirect_to request_path
+    redirect_to requests_path
+    authorize @booking
   end
   private
 

@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>My Booking Requests</h1>
+  <h1>Open Booking Requests</h1>
   <ul>
     <% @requests.each do |request| %>
-      <li><%= link_to "#{request.renter.first_name} #{request.renter.last_name}", show_user_path(request.renter)%> <%= link_to "Accept Request", accept_request_path(request), method: :patch %></li>
+      <li>Listing: <%= link_to "#{request.listing.listing_name}", listing_path(request.listing) %> - Requestor: <%= link_to "#{request.renter.first_name} #{request.renter.last_name}", show_user_path(request.renter)%> - Time: <%=request.start_date.strftime("%m/%d/%y @ %l%p")%> to <%= request.end_date.strftime("%m/%d/%y @ %l%p") %><%= link_to "Accept Request", accept_request_path(request), method: :patch, class: "btn btn-primary" %> </li>
     <% end %>
   </ul>
 </div>
