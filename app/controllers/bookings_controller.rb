@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
     @requests = []
     @bookings.each do |booking|
       if ((booking.listing.renter == current_user) && (booking.accepted.nil?))
-        if (booking.listing.renter != booking.renter) && (booking.start_date < Time.now) && (booking.end_date <= Time.now)
+        if (booking.listing.renter != booking.renter) && (booking.start_date >= DateTime.now)
           @requests << booking
         end
       end
