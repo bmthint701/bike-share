@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
-  skip_after_action :verify_authorized, only: [:show, :index]
-  skip_after_action :verify_policy_scoped, only: [:index]
+  skip_before_action :authenticate_user!, only: [:show, :index, :requests]
+  skip_after_action :verify_authorized, only: [:show, :index, :requests]
+  skip_after_action :verify_policy_scoped, only: [:index, :requests]
   def review
     @listing = Listing.find(params[:listing_id])
     authorize @listing
@@ -53,6 +53,24 @@ class BookingsController < ApplicationController
 
   end
 
+  def requests
+    @bookings = Booking.all
+    @requests = []
+    @bookings.each do |booking|
+      if ((booking.listing.renter == current_user) && (booking.accepted.nil?))
+        if booking.listing.renter != booking.renter
+          @requests << booking
+        end
+      end
+    end
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.accepted = true
+    @booking.save
+    redirect_to request_path
+  end
   private
 
   def booking_params

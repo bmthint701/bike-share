@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "schedule/:id", to: 'listings#schedule', as: 'schedule'
   delete "book/:id", to: 'bookings#destroy'
   get "book/:id", to: 'bookings#show', as: 'booking'
+  get 'my_requests', to: 'bookings#requests', as: 'requests'
+  patch "my_requests/:id", to: "bookings#accept", as: 'accept_request'
 end

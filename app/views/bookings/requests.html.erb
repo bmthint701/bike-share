@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>My Booking Requests</h1>
+  <ul>
+    <% @requests.each do |request| %>
+      <li><%= link_to "#{request.renter.first_name} #{request.renter.last_name}", show_user_path(request.renter)%> <%= link_to "Accept Request", accept_request_path(request), method: :patch %></li>
+    <% end %>
+  </ul>
+</div>
