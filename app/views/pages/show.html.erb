@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+    <%= link_to edit_user_registration_path, class: "btn btn-primary update-button-2" do %>
+        <i class="fas fa-edit"></i>
+    <% end %>
     <div><%= cl_image_tag current_user.photo.present? ? @user.photo : "user1",  height: 300, width: 400, crop: :fill %></div>
-    <%= link_to "Edit Profile",  edit_user_registration_path, class: "btn btn-primary" %>
-
   </div>
 </div>
 

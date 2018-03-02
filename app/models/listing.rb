@@ -3,6 +3,7 @@ class Listing < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   has_many :reviews, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   belongs_to :renter, class_name: 'User'
   validates :bike_type, presence: true
