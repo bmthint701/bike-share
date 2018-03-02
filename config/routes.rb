@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get "book/review", to: 'bookings#review'
   post "book/create", to: 'bookings#create', as: 'bookings'
   get "book/confirm/:id", to: 'bookings#confirm', as: 'booking_confirm'
-  get "book/show", to: "bookings#show", as: 'my_bookings'
+  get "book/index", to: "bookings#index", as: 'my_bookings'
   get "schedule/:id", to: 'listings#schedule', as: 'schedule'
-  get "my_requests", to: 'bookings#requests', as 'bookings_requests'
+  delete "book/:id", to: 'bookings#destroy'
+  get "book/:id", to: 'bookings#show', as: 'booking'
 end

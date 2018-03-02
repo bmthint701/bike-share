@@ -85,6 +85,9 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @booking = Booking.new
+    bookings = Booking.where(listing_id: @listing.id)
+    @unavailable_times = bookings.select{ |booking| booking.listing.id == booking.renter.id }
   end
 
   def update
