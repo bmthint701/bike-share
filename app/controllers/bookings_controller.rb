@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
-  skip_after_action :verify_authorized, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_after_action :verify_authorized, only: [:show, :index]
+  skip_after_action :verify_policy_scoped, only: [:index]
   def review
     @listing = Listing.find(params[:listing_id])
     authorize @listing
@@ -22,7 +23,7 @@ class BookingsController < ApplicationController
         redirect_to booking_confirm_path(@booking)
       else
       @listing = Listing.find(@booking.listing_id)
-      redirect_to listing_path(@listing)
+        redirect_to listing_path(@listing)
       end
     end
     authorize @booking
@@ -33,11 +34,23 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def show
+  def index
     bookings = Booking.where(renter_id: current_user.id)
     @my_rentals = bookings.select{ |booking| booking.renter_id != booking.listing.id}
     listings = Booking.where(listing: current_user)
     @my_listings = listings.select{ |listing| listing.renter_id != listing.listing_id}
+
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to edit_listing(@booking.listing)
+    authorize @booking
+  end
+
+  def show
+
   end
 
   private
