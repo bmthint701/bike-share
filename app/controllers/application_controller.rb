@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_action :capture_origin
   before_action :authenticate_user!
   include Pundit
 
@@ -15,6 +16,17 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :photo])
+  end
+
+  protected
+
+  def capture_origin
+    session[:http_referer] = request.env['HTTP_REFERER'] unless request.env['HTTP_REFERER'] =~ /\/users/
+  end
+
+  def after_sign_in_path_for(resource)
+    # byebug
+    session[:http_referer] or super
   end
 
   private
