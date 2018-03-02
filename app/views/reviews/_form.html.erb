@@ -1,5 +1,5 @@
 <%= simple_form_for([ listing, review ]) do |form| %>
-  <%= form.input :rating, collection: [1,2,3,4,5] %>
+  <%= form.input :rating, collection: [1,2,3,4,5], as: :radio_buttons %>
   <%= form.input :content, as: :text %>
   <%= form.button :submit %>
 <% end %>
