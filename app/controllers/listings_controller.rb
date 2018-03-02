@@ -64,6 +64,7 @@ class ListingsController < ApplicationController
     # current_coordinates = Geocoder.coordinates(request.remote_ip)
     # @distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(@listing.address)).round(2)
     @booking = Booking.new
+    @review = Review.new
     @markers =
       [{
         lat: @listing.latitude,
