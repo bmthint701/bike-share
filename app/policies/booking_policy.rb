@@ -16,4 +16,8 @@ class BookingPolicy < ApplicationPolicy
   def confirm?
     true
   end
+
+  def show?
+    true
+  end
 end
