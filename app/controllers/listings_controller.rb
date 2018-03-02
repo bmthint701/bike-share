@@ -11,7 +11,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.renter_id = current_user.id
-    if @listing.save!
+    if @listing.save
       redirect_to listing_path(@listing)
     else
       render:new
@@ -65,6 +65,7 @@ class ListingsController < ApplicationController
     # current_coordinates = Geocoder.coordinates(request.remote_ip)
     # @distance = Geocoder::Calculations.distance_between(current_coordinates, Geocoder.coordinates(@listing.address)).round(2)
     @booking = Booking.new
+    @review = Review.new
     @markers =
       [{
         lat: @listing.latitude,

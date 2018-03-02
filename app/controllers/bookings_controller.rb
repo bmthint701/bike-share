@@ -11,10 +11,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.listing.renter_id == @booking.renter_id
       if @booking.save
-        redirect_to edit_listing_path(@booking.listing)
+        redirect_to my_listings_path
+        flash[:notice] = "Successful Booking"
       else
         @listing = Listing.find(@booking.listing_id)
-        redirect_to edit_listing_path(@booking.listing)
+        redirect_to schedule_path(@booking.listing)
+        flash[:alert] = "Unsuccessful Booking"
       end
     else
       if @booking.save
