@@ -18,20 +18,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :photo])
   end
 
-  # def after_sign_in_path_for(resource)
-  #   current_user_path
-  # end
-
   protected
 
   def capture_origin
-    byebug
-    session[:original_fullpath] = request.original_fullpath unless request.fullpath =~ /\/users/
+    session[:http_referer] = request.env['HTTP_REFERER'] unless request.env['HTTP_REFERER'] =~ /\/users/
   end
 
   def after_sign_in_path_for(resource)
-    byebug
-    session[:original_fullpath] or super
+    # byebug
+    session[:http_referer] or super
   end
 
   private
