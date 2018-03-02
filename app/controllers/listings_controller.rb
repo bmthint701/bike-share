@@ -57,6 +57,17 @@ class ListingsController < ApplicationController
       @listings = Listing.all
       @header = "All Listings"
     end
+
+    @hash_of_ratings = {}
+    @listings.each do |listing|
+      total_rating = 0
+      listing.reviews.each do |review|
+        total_rating += review.rating
+      end
+      avg_rating = total_rating.to_f / listing.reviews.size
+      @hash_of_ratings[listing.id] = avg_rating
+    end
+
     # authorize @listings
   end
 
@@ -72,6 +83,14 @@ class ListingsController < ApplicationController
         lng: @listing.longitude,
         infoWindow: { content: render_to_string(partial: "map_box", locals: { listing: @listing }) }
       }]
+    @hash_of_ratings = {}
+
+    total_rating = 0
+    @listing.reviews.each do |review|
+      total_rating += review.rating
+    end
+    @avg_rating = total_rating.to_f / @listing.reviews.size
+
   end
 
   def my_listings
