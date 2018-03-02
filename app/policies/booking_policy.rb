@@ -28,4 +28,9 @@ class BookingPolicy < ApplicationPolicy
   def requests?
     true
   end
+
+  def accept?
+    true
+  end
+  
 end
