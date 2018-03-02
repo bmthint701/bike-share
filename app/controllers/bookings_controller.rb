@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
 
   def index
     my_bookings = Booking.where(renter_id: current_user.id)
-    @my_rentals = my_bookings.select{ |booking| (booking.renter_id != booking.listing.renter_id) && (booking.accepted)}
+    @my_rentals = my_bookings.select{ |booking| (booking.renter_id != booking.listing.renter_id) && (!booking.accepted.nil?)}
     listings = Listing.where(renter: current_user)
     @my_listings = []
     listings.each do |listing|
@@ -77,6 +77,7 @@ class BookingsController < ApplicationController
     @booking.accepted = true
     @booking.save
     redirect_to requests_path
+    flash[:notice] = "Request Accepted"
     authorize @booking
   end
   private
