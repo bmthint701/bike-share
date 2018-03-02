@@ -15,7 +15,7 @@
           </div>
         <% end %>
           <%= link_to listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-trash-alt listings-card-bin"></i>
+            <i style="color: white;" class ="fas fa-trash-alt listings-card-bin"></i>
           <% end %>
           <%= link_to edit_listing_path(listing), class: "btn btn-primary update-button" do %>
             <i class="fas fa-edit"></i>
