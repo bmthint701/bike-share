@@ -9,6 +9,17 @@ require 'faker'
 
 user_id = [1, 3, 4]
 
+puts 'Creating 10 fake users...'
+10.times do |x|
+  user = User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    phone: Faker::PhoneNumber.phone_number,
+    email: Faker::Internet.email,
+    encrypted_password: "password"
+
+    )
+end
 puts 'Creating 100 listings...'
 100.times do
 listing = Listing.create(
@@ -21,6 +32,22 @@ listing = Listing.create(
   active: true
   )
 end
+
+puts 'Creating 30 bookings...'
+10.times do
+bookings = Booking.create(
+
+start_date: Faker::Date.between_except(1.day.from_now, 13.day.from_now, Date.today),
+end_date: Faker::Date.between_except(14.day.from_now, 2.month.from_now, Date.today),
+renter_id: rand(1..3),
+created_at: Faker::Time.between(2.month.ago, Date.today, :day), #=> "2014-09-18 16:28:13 -0700"
+updated_at: Faker::Time.between(DateTime.now - 1, DateTime.now),
+listing_id: rand(4..100),
+accepted: true
+
+)
+end
+
 
 
 # require 'faker'
