@@ -1,28 +1,22 @@
 <div class="container">
   <div class="row">
-        <h2 style="<%= 'text-align: center' %>">My Bookings</h2>
-
-
-      <ul>
-      <% @my_rentals.each do |booking| %>
-
-          <div class="col-xs-12 col-sm-4">
-            <%= link_to listing_path(booking.listing), class: "no-deco" do %>
-              <div class="card" style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{ cl_image_path booking.listing.photo, height: 300, width: 400, crop: :fill }')" if booking.listing.photo.present? %>">
-                <h2 class="card-category"><%= booking.listing.listing_name %></h2>
-                <p style="color: white;"><%= "#{booking.start_date.strftime("%m/%d/%y @ %l%p")}"%></p>
-              <p style="color: white;">to</p>
-              <p style="color: white;"><%= "#{booking.end_date.strftime("%m/%d/%y @ %l%p")}" %></p>
-              </div>
-            <% end %>
+    <h2 style="<%= 'text-align: center' %>">My Bookings</h2>
+    <% @my_rentals.each do |booking| %>
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to listing_path(booking.listing), class: "no-deco" do %>
+          <div class="card" style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{ cl_image_path booking.listing.photo, height: 300, width: 400, crop: :fill }')" if booking.listing.photo.present? %>">
+            <h2 class="card-category"><%= booking.listing.listing_name %></h2>
+            <p style="color: white;"><%= "#{booking.start_date.strftime("%m/%d/%y @ %l%p")}"%></p>
+            <p style="color: white;">to</p>
+            <p style="color: white;"><%= "#{booking.end_date.strftime("%m/%d/%y @ %l%p")}" %></p>
           </div>
         <% end %>
       </div>
-    </ul>
-    </div>
+    <% end %>
+  </div>
+  <div class="row"></div>
     <h2 style="<%= 'text-align: center' %>">My Bike's Bookings</h2>
       <% @my_listings.each do |booking| %>
-
         <div class="col-xs-12 col-sm-4">
           <%= link_to listing_path(booking.listing), class: "no-deco" do %>
             <div class="card" style="<%= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{ cl_image_path booking.listing.photo, height: 300, width: 400, crop: :fill }')" if booking.listing.photo.present? %>">
@@ -30,10 +24,11 @@
               <p style="color: white;"><%= "#{booking.start_date.strftime("%m/%d/%y @ %l%p")}"%></p>
               <p style="color: white;">to</p>
               <p style="color: white;"><%= "#{booking.end_date.strftime("%m/%d/%y @ %l%p")}" %></p>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
   </div>
-</div>
+
+
